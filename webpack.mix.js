@@ -1,4 +1,5 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix')
+const { plugins } = require('./postcss.config')
 
 /*
  |--------------------------------------------------------------------------
@@ -11,5 +12,11 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix
+  .js('resources/js/app.js', 'public/js')
+  .postCss('resources/css/app.css', 'public/css', plugins)
+  .sourceMaps()
+
+if (mix.inProduction()) {
+  mix.version()
+}

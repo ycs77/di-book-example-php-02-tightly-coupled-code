@@ -1,100 +1,54 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+    <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
+    <style>
+        body {
+            font-family: Nunito, Inter var, Inter, Segoe UI, -system-ui, Arial;
+        }
+    </style>
+</head>
 
-            .full-height {
-                height: 100vh;
-            }
+<body class="flex flex-col h-screen antialiased">
+    @if (Route::has('login'))
+        <header class="flex px-6 py-4 font-bold text-gray-500">
+            <ul class="flex ml-auto space-x-4">
+                @auth
+                    <li><a class="flex px-4 py-2 text-sm uppercase tracking-wide hover:text-gray-900" href="{{ url('/home') }}">Home</a></li>
+                @else
+                    <li><a class="flex px-4 py-2 text-sm uppercase tracking-wide hover:text-gray-900" href="{{ route('login') }}">Login</a></li>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+                    @if (Route::has('register'))
+                        <li><a class="flex px-4 py-2 text-sm uppercase tracking-wide hover:text-gray-900" href="{{ route('register') }}">Register</a></li>
+                    @endif
+                @endauth
+            </ul>
+        </header>
+    @endif
 
-            .position-ref {
-                position: relative;
-            }
+    <main role="main" class="flex flex-col items-center justify-center flex-grow">
+        <h1 class="mb-10 text-6xl text-gray-600 font-thin">Laravel</h1>
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
+        <ul class="flex flex-col flex-wrap items-center justify-center mb-1 font-bold tracking-widest text-gray-600 uppercase sm:flex-row">
+            <li><a class="px-1 mx-4" href="https://laravel.com/docs">Docs</a></li>
+            <li><a class="px-1 mx-4" href="https://laracasts.com">Laracasts</a></li>
+            <li><a class="px-1 mx-4" href="https://laravel-news.com">News</a></li>
+            <li><a class="px-1 mx-4" href="https://blog.laravel.com">Blog</a></li>
+            <li><a class="px-1 mx-4" href="https://nova.laravel.com">Nova</a></li>
+            <li><a class="px-1 mx-4" href="https://forge.laravel.com">Forge</a></li>
+            <li><a class="px-1 mx-4" href="https://vapor.laravel.com">Vapor</a></li>
+            <li><a class="px-1 mx-4" href="https://github.com/laravel/laravel">GitHub</a></li>
+        </ul>
+    </main>
+</body>
 </html>
